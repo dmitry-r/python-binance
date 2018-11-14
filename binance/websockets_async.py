@@ -33,7 +33,7 @@ class ReconnectingWebsocket:
 
         try:
             ws_url = self.STREAM_URL + self._prefix + self._path
-            async with ws.connect(ws_url) as socket:
+            async with ws.connect(ws_url, ping_timeout=None) as socket:
                 self._reconnect_wait = self.MIN_RECONNECT_WAIT
                 while keep_waiting:
                     evt = await socket.recv()
